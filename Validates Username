@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char username[16];
+    int length, i;
+    int min = 5, max = 15;
+
+    printf("Enter a username: ");
+    scanf("%s", username);
+    length = strlen(username);
+    if (length < min || length > max) {
+        printf("Username length must be between %d and %d characters.\n", min, max);
+        return 1;
+    }
+    if ((username[0] < 'a' || username[0] > 'z') && (username[0] < 'A' || username[0] > 'Z'))
+    {
+        printf("Username must start with a letter.\n");
+        return 0;
+    }
+    for (i = 0; i < length; i++) {
+        if ((username[i] < 'a' || username[i] > 'z') &&
+            (username[i] < 'A' || username[i] > 'Z') &&
+            (username[i] < '0' || username[i] > '9')) {
+            printf("Username must contain only alphanumeric characters.\n");
+            return 0;
+        }
+    }
+    printf("Username is valid\n");
+    return 0;
+}
