@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, j;
+
+    // Get array size
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    // Declare a VLA (only works in C99+)
+    int arr[n];
+
+    // Get array elements
+    printf("Enter the array elements:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Find and mark duplicate elements
+    for (i = 0; i < n - 1; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j]) {
+                arr[j] = -1;
+                arr[i] = -1; // Mark duplicate elements as -1
+            }
+        }
+    }
+
+    // Print unique elements
+    printf("Unique elements are:\n");
+    for (i = 0; i < n; i++) {
+        if (arr[i] != -1) { // Ignore marked duplicates
+            printf("%d\t", arr[i]);
+        }
+    }
+
+    printf("\n");
+    return 0;
+}
